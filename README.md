@@ -1,25 +1,34 @@
 Campaign Group Optimisation Application
 ========================================
 
+**Intro**:
+
 This repository contains an application which is an implementation of a system that takes a group of campaigns, associated within a campaign group,
 and performs an optimisation on them based on some criteria.
 
 This project is setup as a Spring Boot REST API. You should be able to run this as a spring boot app as it should include its own server instance.
 
-Once the project is started you can view the API Docs via the swagger UI at: http://localhost:8080/swagger-ui.html#/
+**Swagger**:
 
-**NOTES**:
+The project has been configured to use swagger so once the project is started you can 
+view the API Docs via the swagger UI at: http://localhost:8080/swagger-ui.html#/
+
+Its also possible to try out some of the endpoints from the swagger UI
+
+**Notes**:
 
 **Before starting the app**:
+
 There is an MySQL database which will need to be configured in the application.properties to input user name and password.
 
-There are 2 sql dump files which can be used to create a blank database or one which will contain sample data.
+There are 2 sql dump files in /src/main/resources/scripts/ which can be used to create a blank database or one which will contain sample data.
 The sample data can be imported to the database with a command as follows:
 >> mysql -u username -p campaign_groups < campaign_groups_dump.sql
 
 If the database is blank at startup then a sample Campaign Group will be created and the campaigns in the csv file will be imported. This file is located in the resources folder.
 
 **Using the App**
+
 Once the app is running you can view the Groups with a call the Rest Endpoints as shown in the swagger documentation (see link above)
 - View all campaign groups
   http://localhost:8080/api/group   or   curl -X GET --header 'Accept: application/json' 'http://localhost:8080/api/group'

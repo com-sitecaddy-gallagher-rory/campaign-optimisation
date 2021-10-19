@@ -6,7 +6,6 @@ import rorygall.demo.campaignoptimisation.resource.OptimisationException;
 import rorygall.demo.campaignoptimisation.service.CampaignGroupService;
 import rorygall.demo.campaignoptimisation.service.OptimisationService;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -43,12 +42,11 @@ public class OptimisationController {
 
     @GetMapping("/optimisation/create/{groupId}")
     public Optimisation createOptimisation(@PathVariable("groupId") int groupId) {
-        Optimisation optimisation = optimisationService.createOptimisationsForGroup(groupId);
-        return optimisation;
+        return optimisationService.createOptimisationsForGroup(groupId);
     }
 
     @PostMapping("/optimisation/save/{groupId}")
-    public void getOptimisation(@PathVariable("groupId") int groupId) {
+    public void saveOptimisation(@PathVariable("groupId") int groupId) {
         optimisationService.createAndSaveOptimisationsForGroup(groupId);
     }
 
