@@ -100,3 +100,4 @@ There are a few things that I would have liked to try but I didnt really have th
 - Add more tests
 - Add security
 - Add logging / metrics
+- Fix errors/warnings
