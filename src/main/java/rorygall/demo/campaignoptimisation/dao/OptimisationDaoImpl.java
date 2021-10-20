@@ -5,6 +5,7 @@ import rorygall.demo.campaignoptimisation.entity.Optimisation;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -41,9 +42,9 @@ public class OptimisationDaoImpl implements OptimisationDao {
     }
 
     @Override
-    public Optimisation findOptimisationById(final int id) {
+    public Optional<Optimisation> findOptimisationById(final int id) {
         Session currentSession = entityManager.unwrap(Session.class);
-        return currentSession.get(Optimisation.class, id);
+        return Optional.ofNullable(currentSession.get(Optimisation.class, id));
     }
 
     @Override

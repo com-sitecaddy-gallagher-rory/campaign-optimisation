@@ -50,7 +50,7 @@ public class CampaignController {
     }
 
     @PostMapping("/campaign/{groupId}")
-    public Campaign createGroup(@RequestBody Campaign campaign, @PathVariable("groupId") int groupId) throws Exception {
+    public Campaign createCampaign(@RequestBody Campaign campaign, @PathVariable("groupId") int groupId) throws Exception {
         campaign.setId(0);
         CampaignGroup campaignGroup = campaignGroupService.findCampaignGroupById(groupId);
         campaign.setGroup(campaignGroup);

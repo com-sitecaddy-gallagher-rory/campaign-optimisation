@@ -23,11 +23,8 @@ public class CampaignGroupServiceImpl implements CampaignGroupService{
 
     @Override
     public CampaignGroup findCampaignGroupById(final int groupId) {
-        CampaignGroup campaignGroup = campaignGroupDao.findCampaignGroupById(groupId);
-        if(campaignGroup != null) {
-            return campaignGroup;
-        }
-        throw new OptimisationException("No Group with Id:" + groupId);
+        return campaignGroupDao.findCampaignGroupById(groupId)
+                .orElseThrow(() -> new OptimisationException("Campaign Group not found for Id:"+groupId));
     }
 
     @Override

@@ -29,7 +29,8 @@ public class OptimisationServiceImpl implements OptimisationService {
     @Override
     @Transactional
     public Optimisation createOptimisationsForGroup(final int groupId) {
-        CampaignGroup campaignGroup = campaignGroupDao.findCampaignGroupById(groupId);
+        CampaignGroup campaignGroup = campaignGroupDao.findCampaignGroupById(groupId)
+                .orElseThrow(() -> new OptimisationException("No Group Id:" + groupId));
         return OptimisationHelper.createOptimisationForGroup(campaignGroup);
     }
 
@@ -52,7 +53,8 @@ public class OptimisationServiceImpl implements OptimisationService {
     public void applyOptimisationForGroup(final int optimisationId) {
         try {
             // Set the status of the optimisation to applied
-            Optimisation optimisation = optimisationDao.findOptimisationById(optimisationId);
+            Optimisation optimisation = optimisationDao.findOptimisationById(optimisationId)
+                    .orElseThrow(() -> new OptimisationException("optimisationId not found for Id:"+optimisationId));
             optimisation.setStatus("applied");
 
             // update the budgets of the campaigns with the new values

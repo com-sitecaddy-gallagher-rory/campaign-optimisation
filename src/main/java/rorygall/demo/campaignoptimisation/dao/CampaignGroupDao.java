@@ -3,6 +3,7 @@ package rorygall.demo.campaignoptimisation.dao;
 import rorygall.demo.campaignoptimisation.entity.CampaignGroup;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,5 +14,5 @@ public interface CampaignGroupDao {
 
     public List<CampaignGroup> findAllCampaignGroups();
 
-    public CampaignGroup findCampaignGroupById(final int id);
+    public Optional<CampaignGroup> findCampaignGroupById(final int id);
 }

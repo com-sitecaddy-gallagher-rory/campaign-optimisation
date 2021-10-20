@@ -4,6 +4,7 @@ import rorygall.demo.campaignoptimisation.dao.CampaignDao;
 import rorygall.demo.campaignoptimisation.dao.CampaignGroupDao;
 import rorygall.demo.campaignoptimisation.entity.Campaign;
 import rorygall.demo.campaignoptimisation.entity.CampaignGroup;
+import rorygall.demo.campaignoptimisation.resource.OptimisationException;
 
 
 import javax.transaction.Transactional;
@@ -31,18 +32,16 @@ public class CampaignServiceImpl implements CampaignService{
     @Override
     @Transactional
     public List<Campaign> findCampaignByGroupId(final int groupId) {
-        CampaignGroup campaignGroup = campaignGroupDao.findCampaignGroupById(groupId);
-        if(campaignGroup != null && campaignGroup.getCampaignList() != null)
-        {
-            return campaignGroup.getCampaignList();
-        }
-        return Collections.emptyList();
+        CampaignGroup campaignGroup = campaignGroupDao.findCampaignGroupById(groupId)
+                .orElseThrow(() -> new OptimisationException("No Group Id:" + groupId));
+        return campaignGroup.getCampaignList();
     }
 
     @Override
     @Transactional
-    public Campaign findCampaignById(final int groupId) {
-        return campaignDao.findCampaignById(groupId);
+    public Campaign findCampaignById(final int id) {
+        return campaignDao.findCampaignById(id)
+                .orElseThrow(() -> new OptimisationException("Campaign not found for Id:"+id));
     }
 
     @Override

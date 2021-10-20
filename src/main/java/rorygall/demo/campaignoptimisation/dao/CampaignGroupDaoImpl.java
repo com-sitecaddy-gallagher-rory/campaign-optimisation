@@ -4,6 +4,7 @@ import rorygall.demo.campaignoptimisation.entity.CampaignGroup;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -37,9 +38,8 @@ public class CampaignGroupDaoImpl implements CampaignGroupDao {
     }
 
     @Override
-    public CampaignGroup findCampaignGroupById(final int id) {
+    public Optional<CampaignGroup> findCampaignGroupById(final int id) {
         Session currentSession = entityManager.unwrap(Session.class);
-
-        return currentSession.get(CampaignGroup.class, id);
+        return Optional.ofNullable(currentSession.get(CampaignGroup.class, id));
     }
 }
